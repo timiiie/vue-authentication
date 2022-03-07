@@ -1,45 +1,38 @@
 <template>
-    <main class="login">
-        <section class="forms">
-            
-            <form class="login" @submit.prevent="login">
-                <h2>Login</h2>
+<main class="login">
+<section class="forms">
+  <form class="register" @submit.prevent="register">
+                <h2>register</h2>
                 <input type="email" 
                 placeholder="Email address"
-                v-model="login_form.email" />
+                v-model="register_form.email" />
                 <input type="password" 
                 placeholder="password" 
-                v-model="login_form.password" />
+                v-model="register_form.password" />
 
-                <input type="submit" value="Login">
+                <input type="submit" value="Register">
             </form>
-            <router-link to="/register" class="link">Register</router-link>
-        </section>
-    </main>
+            </section>
+</main>
 </template>
 
 <script>
 import { ref } from 'vue';
 import { useStore } from 'vuex'
+
 export default {
-    setup () {
-        const login_form = ref({});
+    setup() {
         const register_form = ref({});
       const store = useStore();
 
-        const login = () => {
-             store.dispatch( 'login', login_form.value );
-        }
-
-        const register = () => {
+      const register = () => {
              store.dispatch( 'register', register_form.value );
         }
 
         return {
-            login,
+          
             register,
-            login_form,
-            register_form
+           register_form
         }
     }
 
@@ -47,11 +40,8 @@ export default {
 </script>
 
 <style>
-.link {
-    color:aqua;
-}
 .forms {
-    display:flex;
+    display:block;
     min-height: 100vh;
 }
 
@@ -61,8 +51,8 @@ form{
 }
 
 form.register {
-    color: #fff;
-    background-color: rgb(245, 66, 101);
+    color: rgb(245, 66, 101);
+    background-color: rgb(255, 255, 255);
     background-image: linear-gradient(
         to bottomright,
         rgb(245, 66, 101) 0%,
@@ -127,8 +117,8 @@ form.login input[type="submit"] {
 }
 
 form.register input[type="submit"] {
-    background-color: #fff;
-    color: rgb(245, 66, 101);
+    background-color: rgb(245, 66, 101);
+    color: #fff;
     font-weight: 700;
     padding: 1rem 2rem;
     border-radius: 0.5rem;
@@ -136,5 +126,4 @@ form.register input[type="submit"] {
     text-transform: uppercase;
     
 }
-
 </style>
